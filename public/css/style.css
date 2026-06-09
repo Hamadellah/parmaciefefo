@@ -1,0 +1,339 @@
+/* PharmaFEFO - Modern Pharmacy Stock Management UI */
+
+:root {
+  --primary: #1a6b9a;
+  --primary-dark: #145a82;
+  --secondary: #2ecc71;
+  --sidebar-width: 260px;
+  --navbar-height: 64px;
+  --bg-light: #f0f4f8;
+  --text-dark: #2c3e50;
+  --border-color: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: linear-gradient(180deg, #1a6b9a 0%, #145a82 100%);
+  color: #fff;
+  z-index: 1000;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.sidebar-brand i {
+  font-size: 1.8rem;
+  color: #2ecc71;
+}
+
+.sidebar-nav {
+  padding: 16px 12px;
+}
+
+.sidebar-nav .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.sidebar-nav .nav-link:hover {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+
+.sidebar-nav .nav-link.active {
+  background: rgba(46, 204, 113, 0.25);
+  color: #fff;
+  font-weight: 600;
+}
+
+.sidebar-nav .sub-link {
+  padding-left: 36px;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+/* ===== MAIN WRAPPER ===== */
+.main-wrapper {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== TOP NAVBAR ===== */
+.top-navbar {
+  position: sticky;
+  top: 0;
+  height: var(--navbar-height);
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.sidebar-toggle {
+  color: var(--text-dark);
+  padding: 4px 8px;
+}
+
+.navbar-title h5 {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.navbar-user {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* ===== CONTENT ===== */
+.content-area {
+  flex: 1;
+  padding: 24px 32px;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 4px;
+}
+
+/* ===== STAT CARDS ===== */
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-left: 4px solid transparent;
+  transition: transform 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.stat-info h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.stat-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.stat-blue { border-left-color: #1a6b9a; }
+.stat-blue .stat-icon { background: #e8f4fc; color: #1a6b9a; }
+
+.stat-green { border-left-color: #2ecc71; }
+.stat-green .stat-icon { background: #e8faf0; color: #27ae60; }
+
+.stat-red { border-left-color: #e74c3c; }
+.stat-red .stat-icon { background: #fdecea; color: #e74c3c; }
+
+.stat-orange { border-left-color: #f39c12; }
+.stat-orange .stat-icon { background: #fef5e7; color: #f39c12; }
+
+.stat-purple { border-left-color: #8e44ad; }
+.stat-purple .stat-icon { background: #f4ecf7; color: #8e44ad; }
+
+/* ===== CARDS ===== */
+.card {
+  border: none;
+  border-radius: 12px;
+}
+
+.card-header {
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 20px;
+  font-weight: 600;
+}
+
+/* ===== TABLES ===== */
+.table thead th {
+  background: #f8fafc;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #64748b;
+  border-bottom: 2px solid var(--border-color);
+  padding: 12px 16px;
+}
+
+.table tbody td {
+  padding: 12px 16px;
+  vertical-align: middle;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+/* ===== ALERT LEGEND ===== */
+.alert-legend {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ===== FEFO PREVIEW ===== */
+.fefo-preview-card {
+  background: #e8f4fc;
+  border: 1px solid #b8daef;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.fefo-preview-card h6 {
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+/* ===== LOGIN PAGE ===== */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a6b9a 0%, #2ecc71 100%);
+  padding: 20px;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 440px;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.login-logo {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #1a6b9a, #2ecc71);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.login-header h2 {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.demo-accounts {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ===== FOOTER ===== */
+.app-footer {
+  padding: 16px 32px;
+  text-align: center;
+  color: #94a3b8;
+  border-top: 1px solid var(--border-color);
+  background: #fff;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 991px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .main-wrapper {
+    margin-left: 0;
+  }
+
+  .content-area {
+    padding: 16px;
+  }
+
+  .navbar-user span:not(.badge) {
+    display: none;
+  }
+}
