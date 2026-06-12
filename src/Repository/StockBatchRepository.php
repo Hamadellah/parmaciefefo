@@ -1,9 +1,6 @@
 <?php
 
-/**
- * StockBatchRepository - all SQL queries for stock batches
- * Includes FEFO logic, returns and loss reports
- */
+
 class StockBatchRepository
 {
   private PDO $db;
