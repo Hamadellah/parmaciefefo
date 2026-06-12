@@ -1,9 +1,5 @@
 <?php
 
-/**
- * PharmaFEFO - Front Controller
- * All requests go through this file
- */
 
 session_start();
 
