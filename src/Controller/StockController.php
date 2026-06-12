@@ -1,8 +1,5 @@
 <?php
 
-/**
- * StockController - manage stock batches and movements
- */
 class StockController
 {
   private ProductRepository $productRepo;
