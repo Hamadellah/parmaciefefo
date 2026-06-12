@@ -1,8 +1,6 @@
 <?php
 
-/**
- * DashboardController - main dashboard with statistics
- */
+
 class DashboardController
 {
   private ProductRepository $productRepo;
