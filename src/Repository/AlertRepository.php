@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * AlertRepository - all SQL queries for expiration alerts
+ */
 class AlertRepository
 {
   private PDO $db;
