@@ -1,8 +1,6 @@
 <?php
 
-/**
- * StockMovementRepository - all SQL queries for stock movements
- */
+
 class StockMovementRepository
 {
   private PDO $db;
