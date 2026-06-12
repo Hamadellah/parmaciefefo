@@ -1,8 +1,6 @@
 <?php
 
-/**
- * ProductRepository - all SQL queries for products
- */
+
 class ProductRepository
 {
   private PDO $db;
