@@ -1,8 +1,6 @@
 <?php
 
-/**
- * AlertController - manage expiration alerts (PHARMACIEN)
- */
+
 class AlertController
 {
   private AlertRepository $alertRepo;
