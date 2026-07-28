@@ -1,132 +1,268 @@
 # PharmaFEFO
 
-Application web de gestion de stock pharmaceutique basée sur la règle **FEFO** (First Expired, First Out).
+## 1. Présentation du projet
 
-Lors d'une vente ou sortie de stock, le système sélectionne automatiquement le lot ayant la date d'expiration la plus proche.
+**PharmaFEFO** est une application web de gestion de stock pharmaceutique développée en **PHP** selon une architecture **MVC**. Elle permet de gérer les médicaments, les lots, les dates de péremption et les mouvements de stock en appliquant automatiquement la méthode **FEFO (First Expired, First Out)**. L'application s'adresse aux pharmacies afin d'optimiser la gestion des stocks, réduire les pertes liées aux péremptions et améliorer la traçabilité des médicaments.
 
-## Technologies
+---
+
+# 2. Problématique
+
+La gestion des stocks de médicaments est complexe, notamment lorsque plusieurs lots d'un même produit possèdent des dates de péremption différentes. Une mauvaise gestion peut entraîner des pertes financières, du gaspillage et des risques pour les patients.
+
+PharmaFEFO répond à ce besoin en automatisant la sélection du lot à utiliser selon la règle **FEFO**, tout en proposant un suivi des dates de péremption, des alertes et une gestion complète des stocks.
+
+---
+
+# 3. Fonctionnalités principales
+
+- Authentification avec gestion des rôles (Administrateur, Pharmacien, Préparateur)
+- Gérer les médicaments
+- Gérer les lots et les dates de péremption
+- Enregistrer les entrées et les sorties de stock
+- Appliquer automatiquement la méthode FEFO lors des sorties de stock
+- Afficher les alertes des médicaments proches de la péremption
+- Générer des rapports de pertes
+- Consulter un tableau de bord de gestion
+
+---
+
+# 4. Technologies utilisées
+
+| Technologie | Utilisation |
+|-------------|-------------|
+| PHP 8 | Développement de la logique métier |
+| MySQL | Gestion de la base de données |
+| PDO | Exécution sécurisée des requêtes SQL |
+| HTML5 | Structure des pages |
+| Bootstrap 5 | Interface utilisateur responsive |
+| Architecture MVC | Organisation du projet |
+| Git & GitHub | Gestion des versions |
+
+---
+
+# 5. Installation et lancement
+
+## Prérequis
 
 - PHP 8+
 - MySQL
-- PDO (requêtes préparées)
-- Architecture MVC simple
-- Bootstrap 5
+- XAMPP
+- Git
+- Navigateur Web
 
-## Structure du projet
+---
 
-```
-PharmaFEFO/
-├── config/
-│   └── database.php          # Configuration PDO
-├── database/
-│   ├── schema.sql            # Schéma MySQL
-│   └── seed.sql              # Données de démonstration
-├── public/
-│   ├── index.php             # Front controller (point d'entrée)
-│   ├── css/style.css
-│   └── js/app.js
-├── src/
-│   ├── Controller/           # Contrôleurs MVC
-│   ├── Entity/               # Entités (getters/setters)
-│   ├── Repository/           # Couche d'accès aux données (SQL)
-│   ├── Enum/                 # Énumérations (rôles, statuts)
-│   └── helpers.php           # Fonctions utilitaires
-└── templates/                # Vues (HTML uniquement)
-```
-
-## Installation (XAMPP)
-
-### 1. Copier le projet
-
-Placez le dossier dans `C:\xampp\htdocs\PharmaFEFO`
-
-### 2. Créer la base de données
-
-Ouvrez phpMyAdmin (`http://localhost/phpmyadmin`) et exécutez :
-
-1. `database/schema.sql` — crée la base et les tables
-2. `database/seed.sql` — insère les données de démonstration
-
-Ou via la ligne de commande :
+## Cloner le dépôt
 
 ```bash
-c:\xampp\mysql\bin\mysql.exe -u root < database/schema.sql
-c:\xampp\mysql\bin\mysql.exe -u root < database/seed.sql
+git clone https://github.com/votre-compte/PharmaFEFO.git
 ```
 
-### 3. Configurer la connexion
+---
 
-Modifiez `config/database.php` si nécessaire (par défaut : `root` sans mot de passe).
+## Ouvrir le dossier
 
-### 4. Accéder à l'application
+```bash
+cd PharmaFEFO
+```
+
+---
+
+## Configuration
+
+1. Copier le projet dans :
+
+```text
+C:\xampp\htdocs\PharmaFEFO
+```
+
+2. Ouvrir **phpMyAdmin**
+
+3. Importer :
+
+```
+database/schema.sql
+database/seed.sql
+```
+
+4. Vérifier les informations de connexion dans :
+
+```
+config/database.php
+```
+
+---
+
+## Lancer le projet
+
+Démarrer Apache et MySQL avec XAMPP puis ouvrir :
 
 ```
 http://localhost/PharmaFEFO/public/
 ```
 
-## Comptes de démonstration
+---
 
-| Rôle         | Email                        | Mot de passe |
-|--------------|------------------------------|--------------|
-| Admin        | admin@pharmafefo.com         | admin123     |
-| Préparateur  | preparateur@pharmafefo.com   | prep123      |
-| Pharmacien   | pharmacien@pharmafefo.com    | pharma123    |
+# 6. Structure du projet
 
-## Rôles et permissions
+```
+PharmaFEFO
+│
+├── config/
+├── database/
+├── public/
+├── src/
+│   ├── Controller/
+│   ├── Entity/
+│   ├── Repository/
+│   ├── Enum/
+│   └── helpers.php
+└── templates/
+```
 
-### Préparateur
-- Connexion
-- Créer des lots de stock
+---
+
+# 7. Comptes de démonstration
+
+| Rôle | Email | Mot de passe |
+|------|-------|--------------|
+| Administrateur | admin@pharmafefo.com | admin123 |
+| Préparateur | preparateur@pharmafefo.com | prep123 |
+| Pharmacien | pharmacien@pharmafefo.com | pharma123 |
+
+---
+
+# 8. Rôles et permissions
+
+## Préparateur
+
+- Se connecter
+- Ajouter des lots
 - Enregistrer les entrées de stock
-- Enregistrer les sorties de stock (FEFO automatique)
+- Effectuer les sorties de stock avec FEFO
 
-### Pharmacien
-- Voir les alertes d'expiration
-- Filtrer les produits critiques
+## Pharmacien
+
+- Consulter les alertes de péremption
 - Valider les inventaires
 - Gérer les retours fournisseur
 
-### Admin
+## Administrateur
+
 - Gérer les utilisateurs
-- Gérer les produits
-- Générer les rapports de pertes
-- Voir le tableau de bord
+- Gérer les médicaments
+- Générer les rapports
+- Consulter le tableau de bord
 
-## Règle FEFO
+---
 
-La méthode `getFEFOBatch(productId)` dans `StockBatchRepository` retourne le lot avec :
+# 9. Fonctionnement de la méthode FEFO
 
-- `quantity > 0`
-- Non expiré (`expiry_date >= aujourd'hui`)
-- Date d'expiration la plus proche (`ORDER BY expiry_date ASC LIMIT 1`)
+Lorsqu'un médicament possède plusieurs lots disponibles, le système sélectionne automatiquement celui dont la date de péremption est la plus proche tout en restant valide.
 
-Lors d'une sortie de stock, ce lot est automatiquement sélectionné et sa quantité est réduite.
+Les conditions sont :
 
-## Niveaux d'alerte
+- quantité supérieure à zéro
+- lot non expiré
+- date de péremption la plus proche
 
-| Couleur  | Condition              |
-|----------|------------------------|
-| Vert     | Plus de 6 mois (>180j) |
-| Orange   | Moins de 90 jours      |
-| Rouge    | Moins de 30 jours      |
-| Expiré   | Date dépassée          |
+Cette logique permet de limiter le gaspillage et de respecter la règle **First Expired, First Out (FEFO)**.
 
-## Architecture MVC
+---
 
-- **Controllers** : reçoivent les requêtes, appellent les repositories, chargent les vues
-- **Repositories** : contiennent tout le SQL (PDO prepared statements)
-- **Entities** : propriétés avec getters/setters uniquement
-- **Templates** : HTML uniquement, pas de SQL
+# 10. Niveaux d'alerte
 
-## Routage
+| Niveau | Condition |
+|---------|-----------|
+| 🟢 Vert | Plus de 6 mois |
+| 🟠 Orange | Moins de 90 jours |
+| 🔴 Rouge | Moins de 30 jours |
+| ⚫ Expiré | Date dépassée |
 
-Format : `index.php?route=controller/action`
+---
 
-Exemples :
-- `index.php?route=dashboard`
-- `index.php?route=stock/exit`
-- `index.php?route=products/create`
+# 11. Contribution personnelle
 
-## Licence
+J'ai réalisé l'intégralité du projet de manière autonome.
 
-Projet éducatif — libre d'utilisation.
+J'ai conçu la base de données, développé l'architecture MVC, implémenté la logique FEFO, développé les interfaces utilisateur, géré les rôles, les stocks, les alertes de péremption ainsi que les tests de fonctionnement.
+
+---
+
+# 12. Difficultés rencontrées
+
+## Gestion automatique du FEFO
+
+### Problème
+
+Sélectionner automatiquement le bon lot lorsqu'un médicament possède plusieurs dates de péremption.
+
+### Solution
+
+Création d'une logique SQL permettant de récupérer le lot valide ayant la date d'expiration la plus proche avant d'effectuer la sortie de stock.
+
+### Ce que j'ai appris
+
+- Optimisation des requêtes SQL
+- Gestion de la logique métier en PHP
+- Application concrète de la méthode FEFO
+
+---
+
+## Gestion des rôles
+
+### Problème
+
+Sécuriser les différentes fonctionnalités selon le rôle de l'utilisateur.
+
+### Solution
+
+Mise en place d'une gestion des permissions pour l'Administrateur, le Pharmacien et le Préparateur.
+
+### Ce que j'ai appris
+
+- Gestion des autorisations
+- Sécurisation d'une application PHP
+
+---
+
+# 13. Améliorations possibles
+
+- Ajouter un lecteur de codes-barres
+- Envoyer des alertes par e-mail
+- Générer des statistiques avancées
+- Déployer l'application en ligne
+- Ajouter des tests automatisés
+
+Ces améliorations permettraient d'améliorer les performances, la sécurité et l'expérience utilisateur.
+
+---
+
+# 14. Captures d'écran
+
+## Tableau de bord
+
+```md
+![Dashboard](images/dashboard.png)
+```
+
+Le tableau de bord présente les informations principales sur le stock.
+
+---
+
+## Gestion des médicaments
+
+```md
+![Produits](images/products.png)
+```
+
+Cette capture montre la gestion des médicaments et des lots.
+
+---
+
+# 15. Licence
+
+Projet réalisé dans un cadre pédagogique.
+
+Libre d'utilisation à des fins d'apprentissage.
